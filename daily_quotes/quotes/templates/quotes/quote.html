@@ -1,10 +1,9 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title%} {{day | title}}'s Quote{% endblock %}
 
 {% block content%}
-
-{% include "quotes/includes/header.html" %}
 
 {% if quote is not None%}
     <h1>{{day | title}}'s Quote</h1>

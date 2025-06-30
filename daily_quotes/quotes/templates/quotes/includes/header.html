@@ -1,3 +1,20 @@
 <header>
-    <a href="{% url 'index' %}"><button>Home</button></a>
+    <a href="{% url 'index' %}"><button class ="b">Home</button></a>
 </header>
+
+<style>
+    button{
+    background-color: rgb(214, 95, 159);
+    border-radius: 3px;
+    color: white;
+    border: 0px;
+    width: 100px;
+    height: 40px;
+    font-size: 1.5rem;
+    transition: opacity 0.3s;
+    cursor: pointer;
+    }
+    button:hover{
+        opacity: 0.7;
+    }
+</style>

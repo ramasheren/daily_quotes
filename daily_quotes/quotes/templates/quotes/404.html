@@ -1,11 +1,23 @@
-{% extends "base.html" %}
 
-{% block title %}404 Not Found{% endblock %}
+{% load static %}
 
-{% block content %}
 
-{% include "quotes/includes/header.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found</title>
+<link rel = "stylesheet" href = "{% static 'quotes/404.css' %}">
+</head>
 
-<h1>Not a Day</h1>
- Try Something Else!
-{% endblock%}
+
+<div class = "container">
+    {% include "quotes/includes/header.html" %}
+<body>
+   <h1>Not a Day</h1>
+   Try Something Else!
+</div>
+</body>
+</html>

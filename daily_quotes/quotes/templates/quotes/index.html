@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load static %}
+
 
     {% comment %} day_list = ""
     for day in days:
@@ -9,12 +11,13 @@
 
 {% block title %}All Quotes{% endblock %}
 
+{% block style %}
+<link rel = "stylesheet" href = "{% static 'quotes/index.css' %}">
+{% endblock %}
+
+
 {% block content %}
-
-{% include "quotes/includes/header.html" %}
-
 <h1>Daily Quotes</h1>
-
 <ul>
     {% for day in days %}
         <li>
