@@ -1,15 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+from django.template.loader import render_to_string
 
 # Create your views here.
 
 daily_quotes = {
-    'sunday': 'be happy',
+    'sunday': 'be bold',
     'monday': 'be hopeful',
     'tuesday' : 'be positive',
     'wednesday' : 'be persistent',
-    'thursday' : 'be bold',
+    'thursday' : None,
     'friday' : 'be confident',
     'saturday' : 'be a winner'
 }
@@ -17,13 +18,8 @@ daily_quotes = {
 days = list(daily_quotes.keys())
 
 def index(request):
-    day_list = ""
-    for day in days:
-        cap_day = day.capitalize()
-        redirect_path = reverse('daily-quote', args = [day])
-        day_list += f'<li><a href="{redirect_path}">{cap_day}</a></li>'
-    data = f"<h1>Daily Quotes</h1><ul>{day_list}</ul>"
-    return HttpResponse(data)
+
+    return render(request, "quotes/index.html", {"days" : days})
 
 def daily_quote_by_num(request, day):
     redirect_day = days[day - 1]
@@ -33,7 +29,10 @@ def daily_quote_by_num(request, day):
 def daily_quote(request, day):
     try:
         quote = daily_quotes[day]
-        return HttpResponse(quote)
+        return render(request, "quotes/quote.html", {
+            "quote" : quote,
+            "day" : day})
     except KeyError:
-        return HttpResponseNotFound("not a day:(")
+        data = render_to_string("quotes/404.html")
+        return HttpResponseNotFound(data)
     

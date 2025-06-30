@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+    {% comment %} day_list = ""
+    for day in days:
+        cap_day = day.capitalize()
+        redirect_path = reverse('daily-quote', args = [day])
+        day_list += f'<li><a href="{redirect_path}">{cap_day}</a></li>'
+    data = f"<h1>Daily Quotes</h1><ul>{day_list}</ul>" {% endcomment %}
+
+{% block title %}All Quotes{% endblock %}
+
+{% block content %}
+
+{% include "quotes/includes/header.html" %}
+
+<h1>Daily Quotes</h1>
+
+<ul>
+    {% for day in days %}
+        <li>
+            <a href="{% url 'daily-quote' day %}"> {{day | title }} </a> 
+        </li>
+    {% endfor%}
+</ul>
+{% endblock %}
